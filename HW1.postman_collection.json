@@ -1,0 +1,52 @@
+{
+	"id": "098b432d-d3a1-12aa-af33-e6c86cceb3df",
+	"name": "HW1",
+	"description": "HW1 Collection for Web API",
+	"order": [
+		"71fea934-b11b-76b1-0a90-e62cff81afa9",
+		"5e66aba8-1ace-fec1-7fde-76769d978e12"
+	],
+	"folders": [],
+	"timestamp": 1485308344428,
+	"owner": "1483607",
+	"public": false,
+	"requests": [
+		{
+			"id": "5e66aba8-1ace-fec1-7fde-76769d978e12",
+			"headers": "",
+			"url": " https://www.googleapis.com/books/v1/volumes/{{id}}",
+			"preRequestScript": "",
+			"pathVariables": {},
+			"method": "GET",
+			"data": null,
+			"dataMode": "params",
+			"version": 2,
+			"tests": "var jsonData = JSON.parse(responseBody);\n//Parses the body of the JSON file and stores it as a variable.\n\ntests[\"Status code is 200\"] = responseCode.code === 200;\n//Checks the website and it has connected properly.\n\ntests[\"Has the correct ID\"] = jsonData.id.includes(\"0IIsoRqw9hgC\");\n//Will check the ID and makes sure it matches the correct specific value.\n\n\n\n",
+			"currentHelper": "normal",
+			"helperAttributes": {},
+			"time": 1485643183699,
+			"name": " https://www.googleapis.com/books/v1/volumes?q={{book_title}}",
+			"description": "",
+			"collectionId": "098b432d-d3a1-12aa-af33-e6c86cceb3df",
+			"responses": []
+		},
+		{
+			"id": "71fea934-b11b-76b1-0a90-e62cff81afa9",
+			"headers": "",
+			"url": " https://www.googleapis.com/books/v1/volumes?q={{book_title}}",
+			"preRequestScript": "",
+			"pathVariables": {},
+			"method": "GET",
+			"data": null,
+			"dataMode": "params",
+			"tests": "var jsonData = JSON.parse(responseBody);\n//Parses the Body of the JSON file and stores it as a variable.\n\nif(tests[\"Status code is 200\"] = responseCode.code === 200)\n//The program will check if it connects to the website properly then run the next code.\n//My program will assume to check the status code once to run.\n{\n  \n  for(var i=0; i <jsonData.items.length; i++)\n  //For loop to walkthrough all the items.\n  {\n      \n    if(tests[\"Has the title Turing\"] = jsonData.items[i].volumeInfo.title.includes(\"Turing\"))\n    //Will always check each items to make sure the title contains the keyword Turing. \n      {\n          postman.setEnvironmentVariable(\"id\",jsonData.items[i].id);\n          //Assign the id as an environment variable to be used later.\n      }\n  }\n  \n}\n\n\n",
+			"currentHelper": "normal",
+			"helperAttributes": {},
+			"time": 1485643185649,
+			"name": " https://www.googleapis.com/books/v1/volumes?q={{book_title}}",
+			"description": "",
+			"collectionId": "098b432d-d3a1-12aa-af33-e6c86cceb3df",
+			"responses": []
+		}
+	]
+}
